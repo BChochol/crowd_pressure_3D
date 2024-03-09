@@ -9,14 +9,17 @@ import agh.projects.crowd_pressure.engine.simulation.initializer.agent.Map1Agent
 import agh.projects.crowd_pressure.engine.simulation.model.Agent;
 import agh.projects.crowd_pressure.engine.simulation.model.Board;
 import agh.projects.crowd_pressure.engine.simulation.physics.PhysicalModel;
+import agh.projects.crowd_pressure.types.response_dto.SimulationDto;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Simulation implements Closeable {
 
+    private final String simulationId;
     private final List<Agent> initAgents;
     private List<Agent> agents;
     private Board board;
@@ -25,6 +28,7 @@ public class Simulation implements Closeable {
     private ComputingEngine engine;
 
     public Simulation(int width, int height, int agentCount, PhysicalModel physicalModel, List<Heuristic> heuristics, ComputingEngine engine, BoardInitializer boardInitializer, AgentsInitializer agentInitializer) {
+        this.simulationId = UUID.randomUUID().toString();
         this.physicalModel = physicalModel;
         this.heuristics = heuristics;
         this.engine = engine;
@@ -49,7 +53,7 @@ public class Simulation implements Closeable {
             }
         }
         this.initAgents = new ArrayList<>();
-        for(Agent agent : agents) initAgents.add(new Agent(agent));
+        for (Agent agent : agents) initAgents.add(new Agent(agent));
     }
 
     public void setPhysicalModel(PhysicalModel physicalModel) {
@@ -67,6 +71,14 @@ public class Simulation implements Closeable {
         } catch (Exception exception) {
             System.out.println("Could not change the computing engine");
         }
+    }
+
+    public String getSimulationId() {
+        return simulationId;
+    }
+
+    public SimulationDto toDto() {
+        return new SimulationDto(simulationId);
     }
 
     public List<Agent> getAgents() {
@@ -89,7 +101,7 @@ public class Simulation implements Closeable {
 
     public void restoreInitState() throws Exception {
         agents.clear();
-        for(Agent agent : initAgents) agents.add(new Agent(agent));
+        for (Agent agent : initAgents) agents.add(new Agent(agent));
     }
 
     @Override
