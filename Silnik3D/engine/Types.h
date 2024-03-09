@@ -1,40 +1,40 @@
 namespace Types {
 
-	class Agent {
+    class Agent {
 
-	private:
+    private:
 
-		// todo: define arguments
+        // todo: define arguments
 
-	public:
+    public:
 
-		// todo: define methods
+        // todo: define methods
 
-	};
+    };
 
-	class Map {
+    class Map {
 
-	private:
+    private:
 
-		// todo: define arguments
+        // todo: define arguments
 
-	public:
+    public:
 
-		// todo: define methods
+        // todo: define methods
 
-	};
+    };
 
-	class Configuration {
+    class Configuration {
 
-	private:
+    private:
 
-		// todo: define arguments
+        // todo: define arguments
 
-	public:
+    public:
 
-		// todo: define methods
-		Map toMap() const {}
+        // todo: define methods
+        Map toMap() const {}
 
-	};
+    };
 
 }
