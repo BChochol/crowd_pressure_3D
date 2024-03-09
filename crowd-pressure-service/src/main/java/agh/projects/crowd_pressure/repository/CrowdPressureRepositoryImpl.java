@@ -9,12 +9,17 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 @RequiredArgsConstructor
-public class CrowdPressureRepositoryImpl implements CrowdPressureRepository{
+public class CrowdPressureRepositoryImpl implements CrowdPressureRepository {
 
     private final ConcurrentHashMap<String, Simulation> simulations = new ConcurrentHashMap<>();
 
     @Override
     public Optional<Simulation> getSimulation(String simulationId) {
         return Optional.ofNullable(simulations.get(simulationId));
+    }
+
+    @Override
+    public Optional<Simulation> deleteSimulation(String simulationId) {
+        return Optional.ofNullable(simulations.remove(simulationId));
     }
 }
