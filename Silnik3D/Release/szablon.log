@@ -1,18 +1,23 @@
 ﻿  szablon.cpp
-szablon.cpp(166): warning C4838: konwersja z „double” do „GLfloat” wymaga konwersji zawężającej
-szablon.cpp(168): warning C4838: konwersja z „double” do „GLfloat” wymaga konwersji zawężającej
-szablon.cpp(229): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: zobacz deklarację „strcpy”
-szablon.cpp(241): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: zobacz deklarację „strcpy”
-szablon.cpp(242): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(93): note: zobacz deklarację „strcat”
-szablon.cpp(275): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(93): note: zobacz deklarację „strcat”
-szablon.cpp(286): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(136): note: zobacz deklarację „strcpy”
-szablon.cpp(287): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.16299.0\ucrt\string.h(93): note: zobacz deklarację „strcat”
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(229,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(241,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(242,4): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(275,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(286,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(287,4): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  definicje.cpp
+  interakcja.cpp
+  konfiguracja.cpp
+  model3DS.cpp
   rysowanie.cpp
+  szablon.cpp
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(229,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(241,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(242,4): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(275,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(286,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Projects\Crowd-Pressure-3D\Silnik3D\szablon.cpp(287,4): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  textureBMP.cpp
+  textureTGA.cpp
   Generowanie kodu...
-  szablon.vcxproj -> C:\_DYDAKTYKA\Grafika - podyplomowe dla nieinformatykow\laboratorium\lab2\szablon - teren\.\Release\szablon.exe
+  szablon.vcxproj -> D:\Projects\Crowd-Pressure-3D\Silnik3D\Release\szablon.exe
