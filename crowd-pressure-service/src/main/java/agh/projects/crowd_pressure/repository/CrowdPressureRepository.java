@@ -8,4 +8,6 @@ public interface CrowdPressureRepository {
 
     Optional<Simulation> getSimulation(String simulationId);
 
+    Optional<Simulation> deleteSimulation(String simulationId);
+
 }
