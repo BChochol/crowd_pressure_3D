@@ -79,8 +79,7 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
     }
 
     private Optional<SimulationDto> executeOnSimulation(String simulationId, Function<Simulation, Simulation> fun) {
-        Optional<Simulation> simulation = repository.getSimulation(simulationId);
-        return simulation.map(fun).map(Simulation::toDto);
+        return repository.getSimulation(simulationId).map(fun).map(Simulation::toDto);
     }
 
     private void checkCreateRequest(CreateSimulationRequestDto createSimulationRequestDto) {
