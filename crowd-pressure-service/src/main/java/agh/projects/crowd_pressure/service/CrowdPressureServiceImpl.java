@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 @Service
 @RequiredArgsConstructor
@@ -58,6 +59,30 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
         return simulation.toDto();
     }
 
+    @Override
+    public Optional<SimulationDto> stepSimulation(String simulationId, int steps) {
+        return executeOnSimulation(simulationId, sim -> {
+            for (int i = 0; i < steps; ++i) {
+                sim.step();
+            }
+            return sim;
+        });
+    }
+
+    @Override
+    public Optional<SimulationDto> resetSimulation(String simulationId) {
+        return executeOnSimulation(simulationId, sim -> {
+                    sim.restoreInitState();
+                    return sim;
+                }
+        );
+    }
+
+    private Optional<SimulationDto> executeOnSimulation(String simulationId, Function<Simulation, Simulation> fun) {
+        Optional<Simulation> simulation = repository.getSimulation(simulationId);
+        return simulation.map(fun).map(Simulation::toDto);
+    }
+
     private void checkCreateRequest(CreateSimulationRequestDto createSimulationRequestDto) {
         // todo: check request
         assert createSimulationRequestDto.simulationHeight() > 0;
@@ -68,6 +93,5 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
         assert createSimulationRequestDto.timeQuantum() > 0;
         assert !createSimulationRequestDto.roads().isEmpty();
     }
-
 
 }

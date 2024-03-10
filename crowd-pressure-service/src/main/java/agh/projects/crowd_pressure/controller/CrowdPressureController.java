@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -35,6 +36,16 @@ public class CrowdPressureController {
     @PostMapping("/simulation/")
     ResponseEntity<HTTPResponse<SimulationDto>> createSimulation(@RequestBody CreateSimulationRequestDto createSimulationRequestDto) {
         return ResponseEntity.ok(HTTPResponse.ok(service.createSimulation(createSimulationRequestDto)));
+    }
+
+    @PatchMapping("/simulation/{simulationId}/step")
+    ResponseEntity<HTTPResponse<Optional<SimulationDto>>> stepSimulation(@PathVariable String simulationId, @RequestParam int steps){
+        return ResponseEntity.ok(HTTPResponse.ok(service.stepSimulation(simulationId, steps)));
+    }
+
+    @PatchMapping("/simulation/{simulationId}/reset")
+    ResponseEntity<HTTPResponse<Optional<SimulationDto>>> resetSimulation(@PathVariable String simulationId){
+        return ResponseEntity.ok(HTTPResponse.ok(service.resetSimulation(simulationId)));
     }
 
     @ExceptionHandler(Throwable.class)

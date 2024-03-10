@@ -99,7 +99,7 @@ public class Simulation implements Closeable {
         }
     }
 
-    public void restoreInitState() throws Exception {
+    public void restoreInitState() {
         agents.clear();
         for (Agent agent : initAgents) agents.add(new Agent(agent));
     }

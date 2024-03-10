@@ -12,4 +12,8 @@ public interface CrowdPressureService {
     Optional<SimulationDto> deleteSimulationById(String simulationId);
 
     SimulationDto createSimulation(CreateSimulationRequestDto createSimulationRequestDto);
+
+    Optional<SimulationDto> stepSimulation(String simulationId, int steps);
+
+    Optional<SimulationDto> resetSimulation(String simulationId);
 }
