@@ -6,7 +6,6 @@ import agh.projects.crowd_pressure.engine.simulation.heuristic.DirectionHeuristi
 import agh.projects.crowd_pressure.engine.simulation.heuristic.DistanceHeuristic;
 import agh.projects.crowd_pressure.engine.simulation.physics.SocialForcePhysicalModel;
 import agh.projects.crowd_pressure.repository.CrowdPressureRepository;
-import agh.projects.crowd_pressure.types.request_dto.AgentGroupDto;
 import agh.projects.crowd_pressure.types.response_dto.SimulationDto;
 import agh.projects.crowd_pressure.types.request_dto.CreateSimulationRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -38,9 +37,6 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
         checkCreateRequest(createSimulationRequestDto);
 
         Simulation simulation = new Simulation(
-                createSimulationRequestDto.simulationWidth(),
-                createSimulationRequestDto.simulationHeight(),
-                createSimulationRequestDto.agentGroups().stream().map(AgentGroupDto::groupSize).reduce(0, Integer::sum), // todo: remove this param
                 new SocialForcePhysicalModel(
                         createSimulationRequestDto.scaleCoefficient(),
                         createSimulationRequestDto.destinationRadius(),
@@ -51,11 +47,9 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
                         new DistanceHeuristic()
                 ),
                 new MultiThreadComputingEngine(THREAD_COUNT), // todo: think about shared engine
-                null, // todo: implement initializer
-                null // todo: implement initializer
+                null, // todo: implement new board initializer
+                null // todo: implement new agent initializer
         );
-
-        // todo: remove initializers and implement a new one
 
         repository.saveSimulation(simulation);
 
