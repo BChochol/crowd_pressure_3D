@@ -80,7 +80,7 @@ public class CrowdPressureController {
                     ),
                     @ApiResponse(
                             responseCode = "404",
-                            description = "BadRequest response if any of the parameter is invalid. Each parameter has to be non-negative."
+                            description = "BadRequest response if any of the parameter is invalid. Each parameter has to be non-negative and there has to be at least one road. Each road has to have exactly one crossing defined."
                     )
             }
     )

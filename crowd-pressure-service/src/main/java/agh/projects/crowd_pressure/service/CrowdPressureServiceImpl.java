@@ -88,7 +88,6 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
     }
 
     private void checkCreateRequest(CreateSimulationRequestDto createSimulationRequestDto) {
-        // todo: check request
         assert createSimulationRequestDto.simulationHeight() > 0;
         assert createSimulationRequestDto.simulationWidth() > 0;
         assert createSimulationRequestDto.agentCount() > 0;
