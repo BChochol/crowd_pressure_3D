@@ -25,7 +25,7 @@ public class MultiThreadComputingEngine implements ComputingEngine {
     }
 
     public MultiThreadComputingEngine(int threadCount) {
-        if (threadCount <= 0) throw new IllegalStateException("Thread count has to be positive");
+        if (threadCount <= 0) throw new IllegalArgumentException("Thread count has to be positive");
         this.executor = Executors.newFixedThreadPool(threadCount);
         this.threadCount = threadCount;
     }

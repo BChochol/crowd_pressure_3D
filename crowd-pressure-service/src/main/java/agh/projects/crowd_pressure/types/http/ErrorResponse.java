@@ -5,6 +5,7 @@ public record ErrorResponse(String message, ErrorCode code) {
     public enum ErrorCode {
         CRITICAL_ERROR,
         UNKNOWN_ERROR,
+        SIMULATION_ERROR,
     }
 
 }

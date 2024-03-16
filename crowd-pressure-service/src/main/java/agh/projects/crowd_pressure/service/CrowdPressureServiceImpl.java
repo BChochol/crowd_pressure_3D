@@ -45,11 +45,11 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
                         createSimulationRequestDto.destinationRadius(),
                         createSimulationRequestDto.timeQuantum()
                 ),
-                List.of(
+                List.of( // todo: think about shared heuristics
                         new DirectionHeuristic(),
                         new DistanceHeuristic()
                 ),
-                new MultiThreadComputingEngine(THREAD_COUNT),
+                new MultiThreadComputingEngine(THREAD_COUNT), // todo: think about shared engine
                 null, // todo: implement initializer
                 null // todo: implement initializer
         );
@@ -62,9 +62,14 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
     @Override
     public Optional<SimulationDto> stepSimulation(String simulationId, int steps) {
         return executeOnSimulation(simulationId, sim -> {
-            for (int i = 0; i < steps; ++i) {
-                sim.step();
+            try {
+                for (int i = 0; i < steps; ++i) {
+                    sim.step();
+                }
+            } catch (Exception ex) {
+                throw new IllegalStateException(ex);
             }
+
             return sim;
         });
     }

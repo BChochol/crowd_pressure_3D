@@ -19,7 +19,7 @@ public class Vector {
     }
 
     public void setValue(double value) {
-        if (value < 0) throw new IllegalStateException("Value cannot be negative");
+        if (value < 0) throw new IllegalArgumentException("Value cannot be negative");
         this.value = value;
     }
 
