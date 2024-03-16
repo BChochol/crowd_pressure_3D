@@ -4,9 +4,9 @@ import java.util.List;
 
 public record CreateSimulationRequestDto(
         List<RoadDto> roads,
+        List<AgentGroupDto> agentGroups,
         int simulationWidth,
         int simulationHeight,
-        int agentCount,
         double scaleCoefficient,
         double destinationRadius,
         double timeQuantum

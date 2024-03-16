@@ -80,7 +80,11 @@ public class CrowdPressureController {
                     ),
                     @ApiResponse(
                             responseCode = "404",
-                            description = "BadRequest response if any of the parameter is invalid. Each parameter has to be non-negative and there has to be at least one road. Each road has to have exactly one crossing defined."
+                            description = "BadRequest response if any of the parameter is invalid. Each parameter has to be non-negative and there has to be at least one road. Each road has to have exactly one crossing defined. There has to be at least one agent group."
+                    ),
+                    @ApiResponse(
+                            responseCode = "500",
+                            description = "ServerSide error if the simulation couldn't be initialized."
                     )
             }
     )

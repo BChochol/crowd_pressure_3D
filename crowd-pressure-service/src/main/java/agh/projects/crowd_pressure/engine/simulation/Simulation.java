@@ -36,7 +36,7 @@ public class Simulation implements Closeable {
         try {
             this.board = boardInitializer.initialize(width, height);
         } catch (Exception exception) {
-            System.out.println("Exception during board initialization. Empty board was created. Details: " + exception.getMessage());
+            System.out.println("Exception during board initialization. Empty board was created. Details: " + exception.getMessage()); // todo: rethrow exception
             try {
                 this.board = new EmptyBoardInitializer().initialize(width, height);
             } catch (Exception ignore) {
@@ -46,6 +46,7 @@ public class Simulation implements Closeable {
         try {
             this.agents = agentInitializer.initialize(agentCount, this.board);
         } catch (Exception exception) {
+            // todo: rethrow the exception
             System.out.println("Exception during agents initialization. Empty agent list was created. Details: " + exception.getMessage());
             try {
                 this.agents = new Map1AgentsInitializer().initialize(agentCount, this.board);
@@ -69,7 +70,7 @@ public class Simulation implements Closeable {
             this.engine.close();
             this.engine = engine;
         } catch (Exception exception) {
-            System.out.println("Could not change the computing engine");
+            System.out.println("Could not change the computing engine"); // todo: rethrow exception
         }
     }
 

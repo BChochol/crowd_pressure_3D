@@ -24,7 +24,7 @@ public class WorkerThread implements Runnable {
         try {
             task.execute();
         } catch (Exception exception) {
-            System.out.println("Computation thread \"" + Thread.currentThread().getName() + "\" is dead. Details: " + exception.getMessage());
+            System.out.println("Computation thread \"" + Thread.currentThread().getName() + "\" is dead. Details: " + exception.getMessage()); // todo: use logger
         }
         if (cdl != null) cdl.countDown();
     }
