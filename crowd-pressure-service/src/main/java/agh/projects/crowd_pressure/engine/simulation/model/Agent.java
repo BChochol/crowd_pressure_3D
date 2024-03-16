@@ -1,6 +1,7 @@
 package agh.projects.crowd_pressure.engine.simulation.model;
 
 import agh.projects.crowd_pressure.engine.utils.MathUtil;
+import agh.projects.crowd_pressure.types.response_dto.AgentDto;
 
 public class Agent {
 
@@ -38,16 +39,16 @@ public class Agent {
         this.agentDesiredPosition = agentDesiredPosition;
     }
 
-    public Agent(Agent agent){
+    public Agent(Agent agent) {
         this(
-            new Point(agent.getPosition().getX(), agent.getPosition().getY()),
-            agent.agentMass,
-            agent.agentRadius,
-            agent.agentComfortableSpeed,
-            agent.agentVisionAngle,
-            agent.agentMaxVisionDistance,
-            agent.agentRelaxationTime,
-            new Point(agent.agentDesiredPosition.getX(), agent.agentDesiredPosition.getY())
+                new Point(agent.getPosition().getX(), agent.getPosition().getY()),
+                agent.agentMass,
+                agent.agentRadius,
+                agent.agentComfortableSpeed,
+                agent.agentVisionAngle,
+                agent.agentMaxVisionDistance,
+                agent.agentRelaxationTime,
+                new Point(agent.agentDesiredPosition.getX(), agent.agentDesiredPosition.getY())
         );
     }
 
@@ -109,5 +110,17 @@ public class Agent {
 
     public void stop() {
         isStopped = true;
+    }
+
+    public AgentDto toDto() {
+        return new AgentDto(
+                getPosition().toDto(),
+                getAgentDesiredPosition().toDto(),
+                getAgentMass(),
+                getAgentRadius(),
+                getAgentVisionAngle(),
+                getAgentMaxVisionDistance(),
+                isStopped()
+        );
     }
 }

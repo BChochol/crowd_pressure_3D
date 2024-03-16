@@ -1,5 +1,7 @@
 package agh.projects.crowd_pressure.engine.simulation.model;
 
+import agh.projects.crowd_pressure.types.common.PointDto;
+
 public class Point {
 
     private static final double DELTA = 0.0000000001;
@@ -30,6 +32,10 @@ public class Point {
 
     public Vector toVector() {
         return new Vector(Math.sqrt(x * x + y * y), Math.atan2(y, x));
+    }
+
+    public PointDto toDto() {
+        return new PointDto(x, y);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package agh.projects.crowd_pressure.engine.simulation.model;
 
+import agh.projects.crowd_pressure.types.response_dto.BoardDto;
+
 import java.util.List;
 
 public class Board {
@@ -24,5 +26,13 @@ public class Board {
 
     public int getHeight() {
         return height;
+    }
+
+    public BoardDto toDto() {
+        return new BoardDto(
+                getWidth(),
+                getHeight(),
+                getWalls().stream().map(Wall::toDto).toList()
+        );
     }
 }

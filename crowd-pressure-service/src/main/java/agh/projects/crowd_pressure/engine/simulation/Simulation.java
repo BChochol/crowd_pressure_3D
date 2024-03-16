@@ -79,7 +79,11 @@ public class Simulation implements Closeable {
     }
 
     public SimulationDto toDto() {
-        return new SimulationDto(simulationId);
+        return new SimulationDto(
+                simulationId,
+                board.toDto(),
+                agents.stream().map(Agent::toDto).toList()
+        );
     }
 
     public List<Agent> getAgents() {

@@ -1,5 +1,7 @@
 package agh.projects.crowd_pressure.engine.simulation.model;
 
+import agh.projects.crowd_pressure.types.response_dto.WallDto;
+
 public class Wall {
 
     private Point startPoint;
@@ -24,5 +26,9 @@ public class Wall {
 
     public void setEndPoint(Point endPoint) {
         this.endPoint = endPoint;
+    }
+
+    public WallDto toDto() {
+        return new WallDto(startPoint.toDto(), endPoint.toDto());
     }
 }
