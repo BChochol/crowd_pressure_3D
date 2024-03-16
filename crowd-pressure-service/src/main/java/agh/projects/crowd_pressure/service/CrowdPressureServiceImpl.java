@@ -1,9 +1,11 @@
 package agh.projects.crowd_pressure.service;
 
 import agh.projects.crowd_pressure.engine.simulation.Simulation;
+import agh.projects.crowd_pressure.engine.simulation.computation.ComputingEngine;
 import agh.projects.crowd_pressure.engine.simulation.computation.MultiThreadComputingEngine;
 import agh.projects.crowd_pressure.engine.simulation.heuristic.DirectionHeuristic;
 import agh.projects.crowd_pressure.engine.simulation.heuristic.DistanceHeuristic;
+import agh.projects.crowd_pressure.engine.simulation.heuristic.Heuristic;
 import agh.projects.crowd_pressure.engine.simulation.physics.SocialForcePhysicalModel;
 import agh.projects.crowd_pressure.repository.CrowdPressureRepository;
 import agh.projects.crowd_pressure.types.response_dto.SimulationDto;
@@ -19,7 +21,12 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class CrowdPressureServiceImpl implements CrowdPressureService {
 
-    private static final int THREAD_COUNT = 10;
+    private static final int DEFAULT_THREAD_COUNT = 20;
+    private final ComputingEngine defaultEngine = new MultiThreadComputingEngine(DEFAULT_THREAD_COUNT);
+    private final List<Heuristic> defaultHeuristics = List.of(
+            new DirectionHeuristic(),
+            new DistanceHeuristic()
+    );
     private final CrowdPressureRepository repository;
 
     @Override
@@ -42,11 +49,8 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
                         createSimulationRequestDto.destinationRadius(),
                         createSimulationRequestDto.timeQuantum()
                 ),
-                List.of( // todo: think about shared heuristics
-                        new DirectionHeuristic(),
-                        new DistanceHeuristic()
-                ),
-                new MultiThreadComputingEngine(THREAD_COUNT), // todo: think about shared engine
+                defaultHeuristics,
+                defaultEngine,
                 null, // todo: implement new board initializer
                 null // todo: implement new agent initializer
         );
