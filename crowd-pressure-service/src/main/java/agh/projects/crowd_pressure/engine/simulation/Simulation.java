@@ -25,14 +25,14 @@ public class Simulation implements Closeable {
     private List<Heuristic> heuristics;
     private ComputingEngine engine;
 
-    public Simulation(PhysicalModel physicalModel, List<Heuristic> heuristics, ComputingEngine engine, BoardInitializer boardInitializer, AgentsInitializer agentInitializer) {
+    public Simulation(int width, int height, PhysicalModel physicalModel, List<Heuristic> heuristics, ComputingEngine engine, BoardInitializer boardInitializer, AgentsInitializer agentInitializer) {
         this.simulationId = UUID.randomUUID().toString();
         this.physicalModel = physicalModel;
         this.heuristics = heuristics;
         this.engine = engine;
 
         try {
-            this.board = boardInitializer.initialize();
+            this.board = boardInitializer.initialize(width, height);
             this.agents = agentInitializer.initialize(board);
         } catch (Exception exception) {
             throw new IllegalStateException(String.format("Exception during simulation initialization. Details: [%s]", exception.getMessage()), exception);

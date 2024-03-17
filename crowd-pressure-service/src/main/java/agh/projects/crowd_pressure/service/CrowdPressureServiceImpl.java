@@ -6,6 +6,10 @@ import agh.projects.crowd_pressure.engine.simulation.computation.MultiThreadComp
 import agh.projects.crowd_pressure.engine.simulation.heuristic.DirectionHeuristic;
 import agh.projects.crowd_pressure.engine.simulation.heuristic.DistanceHeuristic;
 import agh.projects.crowd_pressure.engine.simulation.heuristic.Heuristic;
+import agh.projects.crowd_pressure.engine.simulation.initializer.agent.DomainAgentsInitializer;
+import agh.projects.crowd_pressure.engine.simulation.initializer.board.DomainBoardInitializer;
+import agh.projects.crowd_pressure.engine.simulation.model.AgentGroup;
+import agh.projects.crowd_pressure.engine.simulation.model.Road;
 import agh.projects.crowd_pressure.engine.simulation.physics.SocialForcePhysicalModel;
 import agh.projects.crowd_pressure.repository.CrowdPressureRepository;
 import agh.projects.crowd_pressure.types.response_dto.SimulationDto;
@@ -44,6 +48,8 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
         checkCreateRequest(createSimulationRequestDto);
 
         Simulation simulation = new Simulation(
+                createSimulationRequestDto.simulationWidth(),
+                createSimulationRequestDto.simulationHeight(),
                 new SocialForcePhysicalModel(
                         createSimulationRequestDto.scaleCoefficient(),
                         createSimulationRequestDto.destinationRadius(),
@@ -51,8 +57,8 @@ public class CrowdPressureServiceImpl implements CrowdPressureService {
                 ),
                 defaultHeuristics,
                 defaultEngine,
-                null, // todo: implement new board initializer
-                null // todo: implement new agent initializer
+                new DomainBoardInitializer(createSimulationRequestDto.roads().stream().map(Road::new).toList()),
+                new DomainAgentsInitializer(createSimulationRequestDto.agentGroups().stream().map(AgentGroup::new).toList())
         );
 
         repository.saveSimulation(simulation);

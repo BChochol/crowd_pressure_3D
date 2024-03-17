@@ -10,6 +10,6 @@ public interface BoardInitializer {
      * @return the board that will be initialized
      * @throws Exception the exception is thrown whenever any error occurs
      */
-    Board initialize() throws Exception;
+    Board initialize(int width, int height) throws Exception;
 
 }
