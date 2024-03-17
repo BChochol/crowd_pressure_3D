@@ -3,6 +3,7 @@ package agh.projects.crowd_pressure.engine.utils;
 import agh.projects.crowd_pressure.engine.simulation.model.*;
 
 import java.util.List;
+import java.util.Random;
 
 public class MathUtil {
 
@@ -80,5 +81,15 @@ public class MathUtil {
         }
 
         return distanceToCollision;
+    }
+
+    public static Point randomizePointInCircle(Point center, double radius, Random random) {
+        double angle = random.nextDouble() * 2 * Math.PI;
+        double distance = Math.sqrt(random.nextDouble()) * radius;
+
+        double x = center.getX() + (distance * Math.cos(angle));
+        double y = center.getY() + (distance * Math.sin(angle));
+
+        return new Point(x, y);
     }
 }
