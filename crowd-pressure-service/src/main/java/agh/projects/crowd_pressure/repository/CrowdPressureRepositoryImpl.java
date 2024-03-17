@@ -26,9 +26,9 @@ public class CrowdPressureRepositoryImpl implements CrowdPressureRepository {
                         500,
                         500,
                         new SocialForcePhysicalModel(
-                                1,
-                                1,
-                                1
+                                1000,
+                                3,
+                                50
                         ),
                         List.of(
                                 new DirectionHeuristic(),
