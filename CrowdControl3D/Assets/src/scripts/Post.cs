@@ -3,23 +3,17 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Collections.Generic;
 
-public class MyBehavior : MonoBehaviour
+public class PostHandler : MonoBehaviour
 {
-    private Crossing _crossing = new();
-    private Road _road = new();
-    private Simulation _simulation = new();
     private byte[] byteArray;
     
-    void Start()
+    public void sendPostRequest()
     {
-        _crossing.set(1.0f, 0.0f, 0.0f, 1.0f, 1.0f);
-        _road.set(1.0f, 0.0f, 0.0f, 1.0f, 1.0f, _crossing);
-        _simulation.set(new List<Road> { _road.get() }, 100, 100, 100, 100, 100, 100);
-        string json = _simulation.getJson();
-        byteArray = System.Text.Encoding.UTF8.GetBytes(_simulation.getJson());
+        SimulationHandler.setSimulation();
+        byteArray = System.Text.Encoding.UTF8.GetBytes(SimulationHandler.getJson());
         
-        Debug.Log(_simulation.getJson());
-        
+        //Debug.Log(JsonSerialization.ToJson(_simulation.roads));
+        Debug.Log(SimulationHandler.getJson());
         StartCoroutine(Upload());
     }
 
@@ -38,7 +32,7 @@ public class MyBehavior : MonoBehaviour
  
             Debug.Log("Return code: " + StatusCode);
             
-            Debug.Log(request.GetResponseHeader("a"));
+            Debug.Log(request.downloadHandler.text);
  
             if(request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError) {
  
