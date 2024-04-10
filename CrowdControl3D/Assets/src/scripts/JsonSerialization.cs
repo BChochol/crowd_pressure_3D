@@ -16,6 +16,18 @@ public class JsonSerialization : MonoBehaviour
         return json;
     }
     
+    public static string ToJson(Dictionary<string, string> dictionary)
+    {
+        string json = "{";
+        foreach (KeyValuePair<string, string> pair in dictionary)
+        {
+            json += "\"" + pair.Key + "\":" + pair.Value + ",";
+        }
+        json = json.Remove(json.Length - 1);
+        json += "}";
+        return json;
+    }
+    
     public static string ToJson(Crossing crossing)
     {
         string json = "{";
