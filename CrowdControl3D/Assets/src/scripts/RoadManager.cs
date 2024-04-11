@@ -10,7 +10,8 @@ public class RoadManager : MonoBehaviour
     void Start()
     {
         //setSimulation(SimulationHandler.simulation);
-        _simulation.roads.Add(new Road( "0.7", "1.0", "1.0", "4.0", "5.0", "0.0", "0.0", "0.0", "0.0", "0.0"));
+        _simulation.roads.Add(new Road( "1", "-10.0", "-10.0", "10.0", "5.0", "0.0", "0.0", "0.0", "0.0", "0.0"));
+        
         initializeRoads();
     }
     
@@ -18,7 +19,7 @@ public class RoadManager : MonoBehaviour
     {
         _simulation = simulation;
     }
-
+    
     public void initializeRoads()
     {
         foreach (Road road in _simulation.roads)
@@ -33,8 +34,7 @@ public class RoadManager : MonoBehaviour
             float length = Mathf.Sqrt(Mathf.Pow((start.x-end.x), 2) + Mathf.Pow((start.y-end.y), 2));
             
             newRoad.transform.position = new Vector3(center.x, 0, center.y);
-            newRoad.transform.localScale = new Vector3(newRoad.transform.localScale.x, newRoad.transform.localScale.y, float.Parse(road.width, CultureInfo.InvariantCulture.NumberFormat));
-            newRoad.transform.localScale = new Vector3(newRoad.transform.localScale.x, newRoad.transform.localScale.y, length);            
+            newRoad.transform.localScale = new Vector3(float.Parse(road.width, CultureInfo.InvariantCulture.NumberFormat), newRoad.transform.localScale.y, length);
             newRoad.transform.rotation = Quaternion.Euler(0, Mathf.Atan2(end.y - start.y, end.x - start.x) * Mathf.Rad2Deg, 0);
         }
     }
