@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class PostHandler : MonoBehaviour
@@ -27,17 +28,20 @@ public class PostHandler : MonoBehaviour
             request.SetRequestHeader("Content-Type", "application/json");
             yield return request.SendWebRequest();
 
-
-            var StatusCode = request.responseCode;
- 
-            Debug.Log("Return code: " + StatusCode);
-            
-            Debug.Log(request.downloadHandler.text);
- 
             if(request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError) {
  
                 Debug.LogError(request.error);
             }
+            
+            var StatusCode = request.responseCode;
+            if (StatusCode == 200)
+            {
+                SceneManager.LoadScene("RoadScene");
+            }
+            
+            Debug.Log(request.downloadHandler.text);
+ 
+
         }
     }
 }
