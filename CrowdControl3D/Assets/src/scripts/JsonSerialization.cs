@@ -65,8 +65,8 @@ public class JsonSerialization : MonoBehaviour
     {
         string json = "{";
         json += "\"roads\":" + ToJson(simulation.roads) + ",";
-        json += "\"simulationWidth\":" + simulation.simulationWidth + ",";
         json += "\"simulationHeight\":" + simulation.simulationHeight + ",";
+        json += "\"simulationWidth\":" + simulation.simulationWidth + ",";
         json += "\"agentCount\":" + simulation.agentCount + ",";
         json += "\"scaleCoefficient\":" + simulation.scaleCoefficient + ",";
         json += "\"destinationRadius\":" + simulation.destinationRadius + ",";
@@ -78,6 +78,8 @@ public class JsonSerialization : MonoBehaviour
     public static Simulation FromJson(string json)
     {
         Simulation simulation = new();
+        
+        Dictionary<string, object> dict = JsonUtility.FromJson<Dictionary<string, object>>(json);
         return simulation;
     }
 }
