@@ -3,7 +3,7 @@ Shader "Unlit/Test"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Skew ("Skew", Range(-15, 15)) = 0
+        _Skew ("Skew", Float) = 0
     }
     SubShader
     {
