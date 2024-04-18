@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,9 +17,6 @@ public class RoadManager : MonoBehaviour
         _simulation.roads.Add(new Road("1.2", "-5.0", "8.0", "3.0", "-6.0", "1.0", "5.0", "-10.0", "-10.0", "10.0"));
         _simulation.roads.Add(new Road("0.8", "0.0", "0.0", "6.0", "12.0", "0.8", "5.0", "-10.0", "-10.0", "10.0"));
         _simulation.roads.Add(new Road("1.3", "-8.0", "4.0", "2.0", "10.0", "0.5", "5.0", "-10.0", "-10.0", "10.0"));
-
-
-
         
         initializeRoads();
     }
@@ -34,8 +32,7 @@ public class RoadManager : MonoBehaviour
         {
             GameObject newRoad = Instantiate(roadPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             GameObject newCrossing = Instantiate(crossing, new Vector3(0, 0.002f, 0), Quaternion.identity);
-            
-            Debug.Log(float.Parse(road.start["x"], CultureInfo.InvariantCulture.NumberFormat));
+
             
             Vector2 start = new Vector2(float.Parse(road.start["x"], CultureInfo.InvariantCulture.NumberFormat), float.Parse(road.start["y"], CultureInfo.InvariantCulture.NumberFormat));
             Vector2 end = new Vector2(float.Parse(road.end["x"], CultureInfo.InvariantCulture.NumberFormat), float.Parse(road.end["y"], CultureInfo.InvariantCulture.NumberFormat));
@@ -60,6 +57,16 @@ public class RoadManager : MonoBehaviour
             
             float y = ((startCrossingX*endCrossingY - startCrossingY*endCrossingX)*(startRoadY-endRoadY) - (startRoadX*endRoadY - startRoadY*endRoadX)*(startCrossingY-endCrossingY))
                 / ((startCrossingX-endCrossingX)*(startRoadY-endRoadY) - (startCrossingY-endCrossingY)*(startRoadX-endRoadX));
+
+
+            float angle = Mathf.Atan((endRoadY * (x - endCrossingX) + y * (endRoadX - endCrossingX) +
+                                    endCrossingY * (x - endRoadX))/((endRoadX-x)*(x-endCrossingX)+(endRoadY-y)*(y-endCrossingY))) * Mathf.Rad2Deg;
+            
+            MaterialPropertyBlock block = new MaterialPropertyBlock();
+            newCrossing.GetComponent<MeshRenderer>().GetPropertyBlock(block);
+            block.SetFloat("_Skew", angle/5);
+            
+            newCrossing.GetComponent<MeshRenderer>().SetPropertyBlock(block);
             
             newCrossing.transform.position = new Vector3(x, 0.002f, y);
             newCrossing.transform.localScale = new Vector3(float.Parse(road.width, CultureInfo.InvariantCulture.NumberFormat)/-10, 1f, float.Parse(road.crossing.width, CultureInfo.InvariantCulture.NumberFormat)/-10);
