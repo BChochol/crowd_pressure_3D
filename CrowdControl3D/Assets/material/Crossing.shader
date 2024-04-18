@@ -3,6 +3,7 @@ Shader "Unlit/Test"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Skew ("Skew", Range(-15, 15)) = 0
     }
     SubShader
     {
@@ -11,21 +12,24 @@ Shader "Unlit/Test"
         Tags
         {
             "RenderType"="Opaque"
-            "Queue"="Geometry"
+            "Queue"="Transparent"
+            "DisableBatching" = "true"
         }
 
         Pass
         {
+            //BLEND SrcAlpha OneMinusSrcAlpha
+            Blend SrcAlpha OneMinusSrcAlpha
+            Cull Off
             
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
 
-
             #include "UnityCG.cginc"
 
             sampler2D _MainTex;
-            float3 _Scale;
+            float _Skew;
             
 
             struct appdata
@@ -44,6 +48,8 @@ Shader "Unlit/Test"
 
             v2f vert (appdata v)
             {
+                v.vertex.z += v.uv.x * _Skew - _Skew/2;
+                
                 v2f o;
                 o.vertex =  UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
@@ -52,7 +58,7 @@ Shader "Unlit/Test"
 
             float4 frag (v2f i) : SV_Target
             {;
-                float4 color = tex2D(_MainTex, float2(i.uv.y, i.uv.x));
+                float4 color = tex2D(_MainTex, i.uv);
                 
                 return color;
             }

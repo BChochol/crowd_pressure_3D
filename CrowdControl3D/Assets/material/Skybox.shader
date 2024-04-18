@@ -11,16 +11,16 @@ Shader "Unlit/Test"
         Tags
         {
             "RenderType"="Opaque"
-            "Queue"="Geometry"
+            "Queue"="Transparent"
         }
 
         Pass
         {
-            
+            //BLEND SrcAlpha OneMinusSrcAlpha
+            Cull Front
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
 
             #include "UnityCG.cginc"
 
@@ -39,12 +39,14 @@ Shader "Unlit/Test"
             {
                 float4 vertex : SV_POSITION;
                 float3 normal : TEXCOORD0;
-                float2 uv : TEXCOORD1;
+                float3 worldPos : TEXCOORD1;
+                float2 uv : TEXCOORD2;
             };
 
             v2f vert (appdata v)
             {
                 v2f o;
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 o.vertex =  UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 return o;
@@ -52,7 +54,7 @@ Shader "Unlit/Test"
 
             float4 frag (v2f i) : SV_Target
             {;
-                float4 color = tex2D(_MainTex, float2(i.uv.y, i.uv.x));
+                float4 color = tex2D(_MainTex, i.uv);
                 
                 return color;
             }
