@@ -3,7 +3,6 @@ Shader "Unlit/Test"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Skew ("Skew", Range(-15, 15)) = 0
     }
     SubShader
     {
@@ -13,15 +12,12 @@ Shader "Unlit/Test"
         {
             "RenderType"="Opaque"
             "Queue"="Transparent"
-            "DisableBatching" = "true"
         }
 
         Pass
         {
             //BLEND SrcAlpha OneMinusSrcAlpha
-            Blend SrcAlpha OneMinusSrcAlpha
-            Cull Off
-            
+            Cull Front
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -29,7 +25,7 @@ Shader "Unlit/Test"
             #include "UnityCG.cginc"
 
             sampler2D _MainTex;
-            float _Skew;
+            float3 _Scale;
             
 
             struct appdata
@@ -43,14 +39,14 @@ Shader "Unlit/Test"
             {
                 float4 vertex : SV_POSITION;
                 float3 normal : TEXCOORD0;
-                float2 uv : TEXCOORD1;
+                float3 worldPos : TEXCOORD1;
+                float2 uv : TEXCOORD2;
             };
 
             v2f vert (appdata v)
             {
-                v.vertex.z += v.uv.x * _Skew - _Skew/2;
-                
                 v2f o;
+                o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 o.vertex =  UnityObjectToClipPos(v.vertex);
                 o.uv = v.uv;
                 return o;
