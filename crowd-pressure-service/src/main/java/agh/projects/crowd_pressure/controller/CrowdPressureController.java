@@ -7,9 +7,8 @@ import agh.projects.crowd_pressure.types.http.HTTPResponse;
 import agh.projects.crowd_pressure.service.CrowdPressureService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +68,7 @@ public class CrowdPressureController {
             operationId = "CreateSimulation",
             summary = "Creates a new simulation and returns its state.",
             description = "Creates a new simulation and returns its state. The operation may fail if the request contains invalid parameters.",
-            requestBody = @RequestBody(
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "The definition of simulation parameters.",
                     required = true
             ),
@@ -88,7 +87,7 @@ public class CrowdPressureController {
                     )
             }
     )
-    @PostMapping("/simulation/")
+    @PostMapping("/simulation")
     ResponseEntity<HTTPResponse<SimulationDto>> createSimulation(@RequestBody CreateSimulationRequestDto createSimulationRequestDto) {
         return ResponseEntity.ok(HTTPResponse.ok(service.createSimulation(createSimulationRequestDto)));
     }
@@ -147,6 +146,5 @@ public class CrowdPressureController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(HTTPResponse.error(ex.getMessage(), ErrorResponse.ErrorCode.CRITICAL_ERROR));
         }
     }
-
 
 }
