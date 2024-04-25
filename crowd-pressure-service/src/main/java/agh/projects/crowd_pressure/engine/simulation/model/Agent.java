@@ -3,6 +3,8 @@ package agh.projects.crowd_pressure.engine.simulation.model;
 import agh.projects.crowd_pressure.engine.utils.MathUtil;
 import agh.projects.crowd_pressure.types.response_dto.AgentDto;
 
+import java.util.UUID;
+
 public class Agent {
 
     // modifiable
@@ -13,6 +15,7 @@ public class Agent {
     private final Vector desiredVelocity;
 
     // not modifiable
+    private final String agentId;
     private final double agentMass;
     private final double agentRadius;
     private final double agentComfortableSpeed;
@@ -30,6 +33,7 @@ public class Agent {
         this.desiredVelocity = new Vector(0, 0);
 
         // not modifiable
+        this.agentId = UUID.randomUUID().toString();
         this.agentMass = agentMass;
         this.agentRadius = agentRadius;
         this.agentComfortableSpeed = agentComfortableSpeed;
@@ -50,6 +54,10 @@ public class Agent {
                 agent.agentRelaxationTime,
                 new Point(agent.agentDesiredPosition.getX(), agent.agentDesiredPosition.getY())
         );
+    }
+
+    public String getAgentId() {
+        return agentId;
     }
 
     public boolean isStopped() {
@@ -114,6 +122,7 @@ public class Agent {
 
     public AgentDto toDto() {
         return new AgentDto(
+                getAgentId(),
                 getPosition().toDto(),
                 getAgentDesiredPosition().toDto(),
                 getAgentMass(),

@@ -17,6 +17,6 @@ public class DomainBoardInitializer implements BoardInitializer {
     @Override
     public Board initialize(int width, int height) throws Exception {
         // todo: write board initializer
-        return null;
+        return new DefaultBoardInitializer().initialize(width, height);
     }
 }
