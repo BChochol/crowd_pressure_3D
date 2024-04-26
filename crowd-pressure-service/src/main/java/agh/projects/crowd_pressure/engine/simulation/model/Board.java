@@ -1,8 +1,11 @@
 package agh.projects.crowd_pressure.engine.simulation.model;
 
 import agh.projects.crowd_pressure.types.response_dto.BoardDto;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public class Board {
 
@@ -20,6 +23,10 @@ public class Board {
         return walls;
     }
 
+    public static Board empty(int width, int height) {
+        return new Board(width, height, List.of());
+    }
+
     public int getWidth() {
         return width;
     }
@@ -34,5 +41,13 @@ public class Board {
                 getHeight(),
                 getWalls().stream().map(Wall::toDto).toList()
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Board board = (Board) o;
+        return width == board.width && height == board.height && Objects.equals(Set.copyOf(walls), Set.copyOf(board.walls));
     }
 }

@@ -2,6 +2,8 @@ package agh.projects.crowd_pressure.engine.simulation.model;
 
 import agh.projects.crowd_pressure.types.response_dto.WallDto;
 
+import java.util.Objects;
+
 public class Wall {
 
     private Point startPoint;
@@ -31,4 +33,14 @@ public class Wall {
     public WallDto toDto() {
         return new WallDto(startPoint.toDto(), endPoint.toDto());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Wall wall = (Wall) o;
+        return Objects.equals(startPoint, wall.startPoint) && Objects.equals(endPoint, wall.endPoint) ||
+                Objects.equals(startPoint, wall.endPoint) && Objects.equals(endPoint, wall.startPoint);
+    }
+
 }

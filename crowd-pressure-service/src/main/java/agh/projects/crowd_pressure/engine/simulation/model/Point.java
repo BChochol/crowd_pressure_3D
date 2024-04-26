@@ -18,6 +18,10 @@ public class Point {
         this(dto.x(), dto.y());
     }
 
+    public static Point of(double x, double y) {
+        return new Point(x, y);
+    }
+
     public double getX() {
         return x;
     }
