@@ -20,7 +20,7 @@ public class PostHandler : MonoBehaviour
 
     IEnumerator Upload()
     {
-        using (UnityWebRequest request = new UnityWebRequest("http://localhost:8080/api/v1/simulation/"))
+        using (UnityWebRequest request = new UnityWebRequest("http://localhost:8080/api/v1/simulation"))
         {
             request.method = UnityWebRequest.kHttpVerbPOST;
             request.uploadHandler = new UploadHandlerRaw(byteArray);
