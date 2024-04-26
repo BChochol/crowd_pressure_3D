@@ -49,6 +49,18 @@ public class JsonSerialization : MonoBehaviour
         return json;
     }
     
+    public static string ToJson(AgentGroups agentGroup)
+    {
+        string json = "{";
+        json += "\"startCenter\":" + ToJson(agentGroup.startCenter) + ",";
+        json += "\"startRadius\":" + agentGroup.startRadius + ",";
+        json += "\"destination\":" + ToJson(agentGroup.destination) + ",";
+        json += "\"destinationRadius\":" + agentGroup.destinationRadius + ",";
+        json += "\"groupSize\":" + agentGroup.groupSize;
+        json += "}";
+        return json;
+    }
+    
     public static string ToJson(List<Road> roads)
     {
         string json = "[";
@@ -60,14 +72,26 @@ public class JsonSerialization : MonoBehaviour
         json += "]";
         return json;
     }
+    
+    public static string ToJson(List<AgentGroups> agentGroups)
+    {
+        string json = "[";
+        foreach (AgentGroups agentGroup in agentGroups)
+        {
+            json += ToJson(agentGroup) + ",";
+        }
+        json = json.Remove(json.Length - 1);
+        json += "]";
+        return json;
+    }
 
     public static string ToJson(Simulation simulation)
     {
         string json = "{";
         json += "\"roads\":" + ToJson(simulation.roads) + ",";
-        json += "\"simulationHeight\":" + simulation.simulationHeight + ",";
+        json += "\"agentGroups\":" + ToJson(simulation.agentGroups) + ",";
         json += "\"simulationWidth\":" + simulation.simulationWidth + ",";
-        json += "\"agentCount\":" + simulation.agentCount + ",";
+        json += "\"simulationHeight\":" + simulation.simulationHeight + ",";
         json += "\"scaleCoefficient\":" + simulation.scaleCoefficient + ",";
         json += "\"destinationRadius\":" + simulation.destinationRadius + ",";
         json += "\"timeQuantum\":" + simulation.timeQuantum;

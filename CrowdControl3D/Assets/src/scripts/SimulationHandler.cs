@@ -19,9 +19,9 @@ public class SimulationHandler : MonoBehaviour
     public static Simulation simulation = new();
     public static Crossing crossing;
     public static List<Road> roads = new();
+    public static List<AgentGroups> agentGroups = new();
     public static int simulationWidth = 0;
     public static int simulationHeight = 0;
-    public static int agentCount = 0;
     public static int scaleCoefficient = 0;
     public static int destinationRadius = 0;
     public static int timeQuantum = 0;
@@ -47,9 +47,10 @@ public class SimulationHandler : MonoBehaviour
     }
     
     public static void setSimulation()
-    {
-        Debug.Log(JsonSerialization.ToJson(roads));        
-        simulation.set(roads, simulationWidth, simulationHeight, agentCount, scaleCoefficient, destinationRadius, timeQuantum);
+    {      
+        
+        agentGroups.Add(new AgentGroups("0", "0", "0", "0", "0", "0", "0"));
+        simulation.set(roads, agentGroups, simulationWidth, simulationHeight,  scaleCoefficient, destinationRadius, timeQuantum);
     }
     
     public static Simulation getSimulation()
