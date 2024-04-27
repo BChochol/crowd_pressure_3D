@@ -142,23 +142,3 @@ class DomainBoardInitializerTest {
     }
 
 }
-
-// expected
-// Board[width=500, height=500, walls=[
-// 1e. Wall[startPoint=Point(0.0, 255.0), endPoint=Point(245.0, 255.0)], 3o
-// 2e. Wall[startPoint=Point(255.0, 255.0), endPoint=Point(500.0, 255.0)], 1o
-// 3e. Wall[startPoint=Point(255.0, 245.0), endPoint=Point(500.0, 245.0)], 6o
-// 4e. Wall[startPoint=Point(255.0, 245.0), endPoint=Point(255.0, 255.0)], 5o
-// 5e. Wall[startPoint=Point(245.0, 245.0), endPoint=Point(245.0, 255.0)], 2o
-// 6e. Wall[startPoint=Point(0.0, 245.0), endPoint=Point(245.0, 245.0)]]
-// ]
-
-// obtained
-// Board[width=500, height=500, walls=[
-// 1o. Wall[startPoint=Point(500.0, 255.0), endPoint=Point(255.0, 255.0)],
-// 2o. Wall[startPoint=Point(245.0, 245.0), endPoint=Point(245.0, 255.0)],
-// 3o. Wall[startPoint=Point(0.0, 255.0), endPoint=Point(245.0, 255.0)],
-// 4o. Wall[startPoint=Point(0.0, 255.0), endPoint=Point(245.0, 245.0)], wrong one
-// 5o. Wall[startPoint=Point(255.0, 245.0), endPoint=Point(255.0, 255.0)],
-// 6o. Wall[startPoint=Point(500.0, 245.0), endPoint=Point(255.0, 245.0)]]
-// ]
