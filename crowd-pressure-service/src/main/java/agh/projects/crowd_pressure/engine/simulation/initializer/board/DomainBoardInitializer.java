@@ -64,7 +64,7 @@ public class DomainBoardInitializer implements BoardInitializer {
                     walls.add(new Wall(wall2Start, crossingLine2RoadLine2.get()));
                     walls.add(new Wall(crossingLine2RoadLine1.get(), crossingLine2RoadLine2.get()));
 
-                    walls.add(new Wall(wall2End, crossingLine1RoadLine1.get()));
+                    walls.add(new Wall(wall1End, crossingLine1RoadLine1.get()));
                     walls.add(new Wall(wall2End, crossingLine1RoadLine2.get()));
                     walls.add(new Wall(crossingLine1RoadLine1.get(), crossingLine1RoadLine2.get()));
                 } else {
