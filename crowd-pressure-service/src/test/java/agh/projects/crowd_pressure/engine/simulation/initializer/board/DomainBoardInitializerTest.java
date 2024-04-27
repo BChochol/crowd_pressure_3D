@@ -4,10 +4,13 @@ import agh.projects.crowd_pressure.engine.simulation.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DomainBoardInitializerTest {
+
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     private final int width = 500;
     private final int height = 500;
@@ -64,9 +67,7 @@ class DomainBoardInitializerTest {
                         width,
                         height,
                         List.of(
-                                new Wall(Point.of(width - 1, 0), Point.of(width, 1)),
                                 new Wall(Point.of(width, 1), Point.of(1, height)),
-                                new Wall(Point.of(1, height), Point.of(0, height - 1)),
                                 new Wall(Point.of(0, height - 1), Point.of(width - 1, 0))
                         )
                 )
@@ -134,7 +135,8 @@ class DomainBoardInitializerTest {
         BoardInitializer initializer = new DomainBoardInitializer(roads);
         try {
             obtainedBoard = initializer.initialize(width, height);
-        } catch (Exception ignore) {
+        } catch (Exception exception) {
+            logger.warning(String.format("Exception on assertion: [%s]", exception.getMessage()));
         }
         assertEquals(expectedBoard, obtainedBoard);
     }

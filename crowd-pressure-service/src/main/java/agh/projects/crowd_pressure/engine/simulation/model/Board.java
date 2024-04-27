@@ -3,24 +3,24 @@ package agh.projects.crowd_pressure.engine.simulation.model;
 import agh.projects.crowd_pressure.types.response_dto.BoardDto;
 import lombok.EqualsAndHashCode;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class Board {
+public record Board(
+        int width,
+        int height,
+        Set<Wall> walls
 
-    private final List<Wall> walls;
-    private final int width;
-    private final int height;
+) {
 
-    public Board(int width, int height, List<Wall> walls) {
-        this.width = width;
-        this.height = height;
-        this.walls = walls;
+    public Board(int width, int height, List<Wall> walls){
+        this(width, height, Set.copyOf(walls));
     }
 
     public List<Wall> getWalls() {
-        return walls;
+        return walls.stream().toList();
     }
 
     public static Board empty(int width, int height) {
