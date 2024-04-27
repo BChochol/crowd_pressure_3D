@@ -26,8 +26,8 @@ public record Wall(
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Wall wall = (Wall) o;
-        return Objects.equals(startPoint, wall.startPoint) && Objects.equals(endPoint, wall.endPoint) ||
-                Objects.equals(startPoint, wall.endPoint) && Objects.equals(endPoint, wall.startPoint);
+        return (Objects.equals(startPoint, wall.startPoint) && Objects.equals(endPoint, wall.endPoint)) ||
+                (Objects.equals(startPoint, wall.endPoint) && Objects.equals(endPoint, wall.startPoint));
     }
 
 }

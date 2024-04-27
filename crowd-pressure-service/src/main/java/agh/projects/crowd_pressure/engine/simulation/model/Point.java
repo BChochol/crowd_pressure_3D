@@ -49,7 +49,7 @@ public class Point {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Point point) {
-            return Math.abs(point.x - x) < DELTA && Math.abs(point.y - y) < DELTA;
+            return Math.abs(point.x - x) <= DELTA && Math.abs(point.y - y) <= DELTA;
         }
         return false;
     }

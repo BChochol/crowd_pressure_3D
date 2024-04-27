@@ -5,7 +5,6 @@ import agh.projects.crowd_pressure.engine.utils.Line;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -71,7 +70,7 @@ class LineTest {
         Line line1 = new Line(Optional.of(1.0), 0.0);
         Line line2 = new Line(Optional.of(-1.0), 2.0);
 
-        Optional<Point> crossingPoint = Line.getCrossingPointsBoundary(line1, line2, 0.0, 10.0, true);
+        Optional<Point> crossingPoint = Line.getCrossingPointBoundary(line1, line2, 0.0, 10.0, true);
         Optional<Point> expected = Optional.of(Point.of(1, 1));
 
         assertEquals(expected, crossingPoint);
@@ -82,7 +81,7 @@ class LineTest {
         Line line1 = new Line(Optional.of(1.0), 0.0);
         Line line2 = new Line(Optional.of(-1.0), 2.0);
 
-        Optional<Point> crossingPoint = Line.getCrossingPointsBoundary(line1, line2, 2.0, 10.0, true);
+        Optional<Point> crossingPoint = Line.getCrossingPointBoundary(line1, line2, 2.0, 10.0, true);
         Optional<Point> expected = Optional.empty();
 
         assertEquals(expected, crossingPoint);

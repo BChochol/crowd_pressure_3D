@@ -33,7 +33,19 @@ public record Line(Optional<Double> a, Double b) {
         }
     }
 
-    public static Optional<Point> getCrossingPointsBoundary(Line line1, Line line2, double lower, double upper, boolean vertical) {
+    public static Optional<Point> getCrossingPointBoundary(Line line1, Line line2, double lower, double upper, boolean vertical) {
+        return getCrossingPoint(line1, line2).flatMap(p -> {
+            if (vertical) {
+                if (p.getY() >= lower && p.getY() <= upper) return Optional.of(p);
+                else return Optional.empty();
+            } else {
+                if (p.getX() >= lower && p.getX() <= upper) return Optional.of(p);
+                else return Optional.empty();
+            }
+        });
+    }
+
+    public static Optional<Point> getCrossingPoint(Line line1, Line line2) {
         Optional<Point> point;
         if (line1.a.equals(line2.a)) {
             point = Optional.empty();
@@ -50,16 +62,7 @@ public record Line(Optional<Double> a, Double b) {
             double y = line1.a.get() * x + line1.b;
             point = Optional.of(Point.of(x, y));
         }
-
-        return point.flatMap(p -> {
-            if (vertical) {
-                if (p.getY() >= lower && p.getY() <= upper) return Optional.of(p);
-                else return Optional.empty();
-            } else {
-                if (p.getX() >= lower && p.getX() <= upper) return Optional.of(p);
-                else return Optional.empty();
-            }
-        });
+        return point;
     }
 
 }
