@@ -16,15 +16,15 @@ public class DefaultBoardInitializer implements BoardInitializer {
             result = new Board(width, height, new ArrayList<>());
         }
 
-        result.getWalls().add(new Wall(
-                new Point(width / 2.0, height - 1),
-                new Point(width / 2.0, (height - 1) / 2.0 + 3))
-        );
-
-        result.getWalls().add(new Wall(
-                new Point(width / 2.0, 0),
-                new Point(width / 2.0, (height - 1) / 2.0 - 3))
-        );
+//        result.addWall(new Wall(
+//                new Point(width / 2.0, height - 1),
+//                new Point(width / 2.0, (height - 1) / 2.0 + 3))
+//        );
+//
+//        result.addWall(new Wall(
+//                new Point(width / 2.0, 0),
+//                new Point(width / 2.0, (height - 1) / 2.0 - 3))
+//        );
 
         return result;
     }

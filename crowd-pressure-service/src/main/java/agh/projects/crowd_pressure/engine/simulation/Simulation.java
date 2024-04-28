@@ -35,6 +35,7 @@ public class Simulation implements Closeable {
             this.board = boardInitializer.initialize(width, height);
             this.agents = agentInitializer.initialize(board);
         } catch (Exception exception) {
+            exception.printStackTrace();
             throw new IllegalStateException(String.format("Exception during simulation initialization. Details: [%s]", exception.getMessage()), exception);
         }
 
