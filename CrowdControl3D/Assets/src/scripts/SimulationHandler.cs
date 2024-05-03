@@ -20,8 +20,8 @@ public class SimulationHandler : MonoBehaviour
     public static Crossing crossing;
     public static List<Road> roads = new();
     public static List<AgentGroups> agentGroups = new();
-    public static int simulationWidth = 0;
-    public static int simulationHeight = 0;
+    public static int simulationWidth = 200;
+    public static int simulationHeight = 200;
     public static int scaleCoefficient = 0;
     public static int destinationRadius = 0;
     public static int timeQuantum = 0;
