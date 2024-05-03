@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngineInternal;
 
 public class PostHandler : MonoBehaviour
 {
@@ -36,10 +37,11 @@ public class PostHandler : MonoBehaviour
             var StatusCode = request.responseCode;
             if (StatusCode == 200)
             {
+                //Debug.Log(request.downloadHandler.text);
+                SimulationHandler.simulation = JsonSerialization.FromJson(request.downloadHandler.text);
                 SceneManager.LoadScene("RoadScene");
             }
             
-            Debug.Log(request.downloadHandler.text);
  
 
         }
