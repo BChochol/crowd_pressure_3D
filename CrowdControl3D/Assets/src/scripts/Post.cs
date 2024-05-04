@@ -37,8 +37,12 @@ public class PostHandler : MonoBehaviour
             var StatusCode = request.responseCode;
             if (StatusCode == 200)
             {
-                //Debug.Log(request.downloadHandler.text);
-                SimulationHandler.simulation = JsonSerialization.FromJson(request.downloadHandler.text);
+                Debug.Log(request.downloadHandler.text);
+                List<Agent> agents = JsonSerialization.getAgentsList(request.downloadHandler.text);
+                Debug.Log(agents.Count);
+                SimulationHandler.setAgents(agents);
+                //SimulationHandler.simulation = JsonSerialization.FromJson(request.downloadHandler.text);
+                //Debug.Log(SimulationHandler.getJson());
                 SceneManager.LoadScene("RoadScene");
             }
             
