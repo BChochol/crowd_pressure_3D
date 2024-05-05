@@ -77,6 +77,7 @@ public class RoadManager : MonoBehaviour
         }
     }
     
+    
     public void initializeAgents()
     {
         Debug.Log(SimulationHandler.agents.Count);
