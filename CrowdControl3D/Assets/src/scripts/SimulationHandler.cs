@@ -16,6 +16,11 @@ public class SimulationHandler : MonoBehaviour
     [SerializeField] Text _crossingEndX;
     [SerializeField] Text _crossingEndY;
     
+    [SerializeField] Text _agentsPositionX;
+    [SerializeField] Text _agentsPositionY;
+    [SerializeField] Text _agentsRadius;
+    [SerializeField] Text _agentsCount;
+    
     public static Simulation simulation = new();
     public static Crossing crossing;
     public static List<Road> roads = new();
@@ -44,6 +49,21 @@ public class SimulationHandler : MonoBehaviour
 
         roads.Add(newRoad);
         Debug.Log(JsonSerialization.ToJson(roads));
+    }
+
+    public void addAgentsGroup()
+    {
+        string newStartCenterX = _agentsPositionX.text;
+        string newStartCenterY = _agentsPositionY.text;
+        string newStartRadius = _agentsRadius.text;
+        string newDestinationX = "0";
+        string newDestinationY = "0";
+        string destinationRadius = "0";
+        string agentsCount = _agentsCount.text;
+        
+        AgentGroups newAgentGroup = new AgentGroups(newStartCenterX, newStartCenterY, newStartRadius, newDestinationX, newDestinationY, destinationRadius, agentsCount);
+        
+        agentGroups.Add(newAgentGroup);
     }
     
     public static void setSimulation()
