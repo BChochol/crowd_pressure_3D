@@ -38,6 +38,7 @@ public class PostHandler : MonoBehaviour
             if (StatusCode == 200)
             {
                 Debug.Log(request.downloadHandler.text);
+                SimulationHandler.setId(JsonSerialization.getSimulationId(request.downloadHandler.text)); 
                 List<Agent> agents = JsonSerialization.getAgentsList(request.downloadHandler.text);
                 Debug.Log(agents.Count);
                 SimulationHandler.setAgents(agents);

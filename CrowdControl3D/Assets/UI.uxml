@@ -1,0 +1,47 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI.uss?fileID=7433441132597879392&amp;guid=c28dd4aefab38a548b1640c5763e1693&amp;type=3#UI" />
+    <ui:VisualElement style="flex-grow: 1; justify-content: flex-start; align-items: center; height: 100%;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; justify-content: flex-end; align-self: flex-start; align-items: center; flex-direction: column; width: 100%; height: 50%;">
+            <ui:VisualElement style="flex-grow: 1; width: 100%; height: 70%; flex-direction: row; align-self: auto; justify-content: flex-start; align-items: auto; flex-wrap: wrap;">
+                <ui:VisualElement style="flex-grow: 1; height: 100%; width: 50%;">
+                    <ui:VisualElement style="flex-grow: 1; justify-content: center;">
+                        <ui:FloatField label="Road Width" value="42,2" name="width" style="height: 86px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: center;">
+                        <ui:FloatField value="42,2" name="roadStartX" style="width: 20%; -unity-text-align: middle-right; white-space: nowrap;" />
+                        <ui:FloatField value="42,2" name="roadStartY" style="width: 20%;" />
+                        <ui:FloatField value="42,2" name="roadEndX" style="width: 20%;" />
+                        <ui:FloatField value="42,2" name="roadEndY" style="width: 20%;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-grow: 1; width: 50%; height: 100%; flex-direction: row;">
+                    <ui:VisualElement style="flex-grow: 1; height: 100%; width: 50%;">
+                        <ui:VisualElement name="crossingWidth" style="flex-grow: 1; justify-content: center;">
+                            <ui:FloatField label="Crossing Width" value="42,2" style="height: 86px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; flex-direction: row; -unity-text-align: upper-left; justify-content: center; height: auto;">
+                            <ui:FloatField value="42,2" name="crossingStartX" style="width: 20%; -unity-text-align: middle-right; white-space: nowrap;" />
+                            <ui:FloatField value="42,2" name="crossingStartY" style="width: 20%;" />
+                            <ui:FloatField value="42,2" name="crossingEndX" style="width: 20%;" />
+                            <ui:FloatField value="42,2" name="crossingEndY" style="width: 20%;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Button text="Add Road" parse-escape-sequences="true" display-tooltip-when-elided="true" name="addRoad" style="justify-content: space-between; align-items: auto; align-self: auto; height: 52px; width: 218px;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; justify-content: flex-start; align-self: flex-start; align-items: center; flex-direction: row; width: 100%; height: 50%; -unity-text-align: upper-center;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 1; width: 40%;">
+                <ui:FloatField label="Start X" value="42,2" />
+                <ui:FloatField label="Start Y" value="42,2" />
+                <ui:FloatField label="Start Radius" value="42,2" />
+                <ui:FloatField label="Destination X" value="42,2" />
+                <ui:FloatField label="Destination Y" value="42,2" />
+                <ui:FloatField label="Destination Radius" value="42,2" />
+                <ui:IntegerField label="Agents Count" value="42" />
+            </ui:VisualElement>
+            <ui:Button text="Add Agent Group" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: auto; margin-right: 200px; margin-left: 200px; padding-left: 52px; padding-right: 52px; -unity-text-align: lower-center;" />
+        </ui:VisualElement>
+        <ui:Button text="Start Simulation" parse-escape-sequences="true" display-tooltip-when-elided="true" style="width: 40%; margin-bottom: 51px;" />
+    </ui:VisualElement>
+</ui:UXML>

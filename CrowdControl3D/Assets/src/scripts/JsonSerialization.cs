@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -175,6 +176,14 @@ public class JsonSerialization : MonoBehaviour
         Debug.Log(agentsList.Count);
         
         return agentsList;
+    }
+    
+    public static String getSimulationId(string json)
+    {
+        Dictionary<string, object> dict = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+        Dictionary<string, object> responseDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(dict["response"].ToString());
+        Dictionary<string, object> bodyDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseDict["body"].ToString());
+        return bodyDict["simulationId"].ToString();
     }
     
 }

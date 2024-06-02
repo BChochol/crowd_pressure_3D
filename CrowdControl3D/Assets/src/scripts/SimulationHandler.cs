@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,13 @@ public class SimulationHandler : MonoBehaviour
     
     [SerializeField] Text _agentsPositionX;
     [SerializeField] Text _agentsPositionY;
+    [SerializeField] Text _agentsDestinationX;
+    [SerializeField] Text _agentsDestinationY;
     [SerializeField] Text _agentsRadius;
+    [SerializeField] Text _agentsDestinationRadius;
     [SerializeField] Text _agentsCount;
+    
+    static String id = null;
 
     public static SimulationHandler _instance;
     public static SimulationHandler Instance { get; private set; }
@@ -44,9 +50,9 @@ public class SimulationHandler : MonoBehaviour
     public static List<AgentGroups> agentGroups = new();
     public static int simulationWidth = 200;
     public static int simulationHeight = 200;
-    public static int scaleCoefficient = 0;
-    public static int destinationRadius = 0;
-    public static int timeQuantum = 0;
+    public static int scaleCoefficient = 1000;
+    public static int destinationRadius = 3;
+    public static int timeQuantum = 50;
     
     public static List<Agent> agents = new();
     
@@ -76,9 +82,9 @@ public class SimulationHandler : MonoBehaviour
         string newStartCenterX = _agentsPositionX.text;
         string newStartCenterY = _agentsPositionY.text;
         string newStartRadius = _agentsRadius.text;
-        string newDestinationX = "0";
-        string newDestinationY = "0";
-        string destinationRadius = "0";
+        string newDestinationX = _agentsDestinationX.text;
+        string newDestinationY = _agentsDestinationY.text;
+        string destinationRadius = _agentsDestinationRadius.text;
         string agentsCount = _agentsCount.text;
         
         AgentGroups newAgentGroup = new AgentGroups(newStartCenterX, newStartCenterY, newStartRadius, newDestinationX, newDestinationY, destinationRadius, agentsCount);
@@ -88,7 +94,6 @@ public class SimulationHandler : MonoBehaviour
 
     public static void setSimulation()
     {      
-        agentGroups.Add(new AgentGroups("0", "0", "5", "10", "5", "5", "10"));
         simulation.set(roads, agentGroups, simulationWidth, simulationHeight,  scaleCoefficient, destinationRadius, timeQuantum);
     }
     
@@ -106,6 +111,16 @@ public class SimulationHandler : MonoBehaviour
     {
         simulationWidth = width;
         simulationHeight = height;
+    }
+    
+    public static String getId()
+    {
+        return id;
+    }
+    
+    public static void setId(String newId)
+    {
+        id = newId;
     }
     
     public static void addAgent(float x, float y, float destinationX, float destinationY)
